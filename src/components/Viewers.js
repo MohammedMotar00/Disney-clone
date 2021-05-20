@@ -13,8 +13,8 @@ function Viewers() {
   return (
     <Container>
       {viewers.map((view, index) => (
-        <Wrap>
-          <img src={view.image} alt="" />
+        <Wrap key={index}>
+          <img src={view.image} />
         </Wrap>
       ))}
     </Container>
