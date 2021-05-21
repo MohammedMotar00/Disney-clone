@@ -1,18 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
+import db from "../firebase";
 
 function Detail() {
+  const { id } = useParams();
+  const [movie, setMovie] = useState();
+
+  useEffect(() => {
+    // Grab the movie info from DB
+    db.collection("movies")
+      .doc(id)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          // Save the movie data
+          setMovie(doc.data());
+        } else {
+          // Redirect to Home page
+        }
+      });
+  }, [id]);
+
+  console.log(movie);
+
   return (
     <Container>
       <Background>
         <img
-          src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/4F39B7E16726ECF419DD7C49E011DD95099AA20A962B0B10AA1881A70661CE45/scale?width=1440&aspectRatio=1.78&format=jpeg"
-          alt=""
+          src={movie?.backgroundImg && movie.backgroundImg}
+          alt={movie?.title && movie.title}
         />
       </Background>
 
       <ImageTitle>
-        <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/D7AEE1F05D10FC37C873176AAA26F777FC1B71E7A6563F36C6B1B497CAB1CEC2/scale?width=1440&aspectRatio=1.78" />
+        <img
+          src={movie?.titleImg && movie.titleImg}
+          alt={movie?.title && movie.title}
+        />
       </ImageTitle>
 
       <Controls>
@@ -35,14 +60,8 @@ function Detail() {
         </GroupWatchButton>
       </Controls>
 
-      <SubTitle>2018 * 7m * Family, Fantasy, Kids, Animation</SubTitle>
-      <Description>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci
-        dolorum qui natus, dolore quis unde ex! Fuga libero hic velit, itaque
-        reiciendis eos? Magni sit aspernatur voluptas maiores perspiciatis sed!
-        Consequatur ipsum beatae quam maxime saepe incidunt doloribus libero
-        expedita dolorum.
-      </Description>
+      <SubTitle>{movie?.subTitle && movie.subTitle}</SubTitle>
+      <Description>{movie?.description && movie.description}</Description>
     </Container>
   );
 }
