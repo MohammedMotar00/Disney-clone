@@ -93,7 +93,7 @@ function Header() {
           </NavMenu>
           <UserImg
             onClick={signOut}
-            src="https://scontent.fmmx1-1.fna.fbcdn.net/v/t1.6435-9/121204899_108630794348948_4668345801631341078_n.jpg?_nc_cat=102&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=EfCt8ZHC88kAX8iebeN&_nc_ht=scontent.fmmx1-1.fna&oh=58f295936faf639bd229ed7650448ce7&oe=60C9EEDE"
+            src={userPhoto}
           />
         </>
       )}
