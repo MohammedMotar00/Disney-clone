@@ -55,7 +55,7 @@ function Header() {
 
   return (
     <Nav>
-      <LogoContainer>
+      <LogoContainer onClick={() => history.push("/")}>
         <Logo src="/images/logo.svg" />
         <p>Clone App</p>
       </LogoContainer>
@@ -91,10 +91,7 @@ function Header() {
               <span>SERIES</span>
             </a>
           </NavMenu>
-          <UserImg
-            onClick={signOut}
-            src={userPhoto}
-          />
+          <UserImg onClick={signOut} src={userPhoto} />
         </>
       )}
     </Nav>
@@ -124,6 +121,7 @@ const Logo = styled.img`
 const LogoContainer = styled.div`
   display: flex;
   align-items: center;
+  cursor: pointer;
 
   p {
     font-weight: bold;

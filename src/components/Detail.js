@@ -41,23 +41,27 @@ function Detail() {
       </ImageTitle>
 
       <Controls>
-        <PlayButton>
-          <img src="/images/play-icon-black.png" alt="" />
-          <span>PLAY</span>
-        </PlayButton>
+        <div>
+          <PlayButton>
+            <img src="/images/play-icon-black.png" alt="" />
+            <span>PLAY</span>
+          </PlayButton>
 
-        <TrailerButton>
-          <img src="/images/play-icon-white.png" alt="" />
-          <span>TRAILER</span>
-        </TrailerButton>
+          <TrailerButton>
+            <img src="/images/play-icon-white.png" alt="" />
+            <span>TRAILER</span>
+          </TrailerButton>
+        </div>
 
-        <AddButton>
-          <span>+</span>
-        </AddButton>
+        <div>
+          <AddButton>
+            <span>+</span>
+          </AddButton>
 
-        <GroupWatchButton>
-          <img src="/images/group-icon.png" alt="" />
-        </GroupWatchButton>
+          <GroupWatchButton>
+            <img src="/images/group-icon.png" alt="" />
+          </GroupWatchButton>
+        </div>
       </Controls>
 
       <SubTitle>{movie?.subTitle && movie.subTitle}</SubTitle>
@@ -106,7 +110,16 @@ const ImageTitle = styled.div`
 
 const Controls = styled.div`
   display: flex;
-  align-items: center;
+
+  div {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+  }
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
 `;
 
 const PlayButton = styled.button`
